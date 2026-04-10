@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="icon" type="image/png" href="/static/favicon.png">
+    <title>Verify on Roblox — SCP Foundation</title>
+    <style>
+        :root{--bg:#0a0e17;--card:#151c2c;--accent:#3b82f6;--muted:#94a3b8;--text:#f1f5f9}
+        *{box-sizing:border-box;margin:0;padding:0}
+        body{font-family:Inter,Segoe UI,system-ui,Arial;background:var(--bg);color:var(--text);padding:24px}
+        .nav{display:flex;align-items:center;justify-content:space-between;max-width:1200px;margin:0 auto 20px;padding:12px 24px;background:rgba(10,14,23,0.6);border-radius:10px}
+        .brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+        .brand-icon{background:linear-gradient(135deg,var(--accent),#8b5cf6);width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700}
+        .container{max-width:700px;margin:0 auto;text-align:center}
+        h1{font-size:1.6rem;color:var(--accent);margin-bottom:6px}
+        .code-box{background:transparent;border:2px dashed rgba(59,130,246,0.18);border-radius:10px;padding:18px;margin:18px 0;font-size:2.25rem;letter-spacing:8px;font-weight:800;color:#ffb86b}
+        .instructions{background:var(--card);padding:16px;border-radius:10px;margin:14px 0;text-align:left;color:var(--muted)}
+        .btn{display:inline-block;padding:10px 14px;background:var(--accent);color:#041024;border-radius:10px;text-decoration:none;font-weight:700}
+        .status{margin-top:12px;font-size:1.05rem}
+        .success{color:#10b981}.error{color:#ef4444}
+        footer{margin-top:18px;color:var(--muted)}
+    </style>
+</head>
+<body>
+    <nav class="nav"><a class="brand" href="/"><div class="brand-icon">SP</div><div style="font-weight:700;color:var(--text)">Site Phantom</div></a><div><a class="btn" href="/userdash">Dashboard</a></div></nav>
+    <div class="container">
+        <header>
+            <h1>🎮 Roblox Verification</h1>
+            <p>Your unique 4-digit code is below.</p>
+        </header>
+
+        <div class="code-box">{{ code }}</div>
+
+        <div class="instructions">
+            <h3>How to verify:</h3>
+            <ol>
+                <li>Join the <strong>Ranking Place</strong> at https://www.roblox.com/games/101959310206065/Ranking-Place</li>
+                <li>Select verify and type in the code:<code>{{ code }}</code></li>
+                <li>You'll get to see your discord ID, if correct, press confirm.</li>
+                <li>We will automatically recognize your confirmation and link your roblox account with your Site Phantom Account.</li>
+            </ol>
+        </div>
+
+        <div class="status" id="status">Status: Awaiting verification...</div>
+
+        <button class="btn" onclick="checkVerification()">Check Verification</button>
+
+        <footer>
+            <p>Code expires in 10 minutes • Do not share this code</p>
+        </footer>
+    </div>
+
+    <script>
+        const DISCORD_ID = "{{ discord_id }}";
+
+        async function checkVerification() {
+            const statusEl = document.getElementById("status");
+            statusEl.textContent = "Checking...";
+            statusEl.className = "status";
+
+            try {
+                // Check if Discord ID is verified (doesn't rely on code)
+                const res = await fetch(`/auth/roblox/status?discord_id=${DISCORD_ID}`);
+                const data = await res.json();
+
+                if (data.verified) {
+                    statusEl.textContent = "✅ Verified! Redirecting...";
+                    statusEl.className = "status success";
+                    setTimeout(() => {
+                        window.location.href = "/userdash";
+                    }, 1500);
+                } else {
+                    statusEl.textContent = "❌ Not verified yet. Try again.";
+                    statusEl.className = "status error";
+                }
+            } catch (err) {
+                console.error("Check failed:", err);
+                statusEl.textContent = "⚠️ Check failed. Try again.";
+                statusEl.className = "status error";
+            }
+        }
+
+        // Optional: auto-check every 8 seconds
+        setInterval(checkVerification, 8000);
+    </script>
+</body>
+</html>

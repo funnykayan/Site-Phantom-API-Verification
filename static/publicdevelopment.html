@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="icon" type="image/png" href="/static/favicon.png">
+  <title>SitePhantom Development Verification API — Developer Docs</title>
+  <meta name="description" content="Official documentation for the SitePhantom Development Verification API. Integrate securely with our self-hosted, private verification system.">
+  <style>
+    :root{--bg:#0a0e17;--card:#151c2c;--accent:#3b82f6;--muted:#94a3b8;--text:#f1f5f9;--code:#1a1a28}
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:Inter,Segoe UI,system-ui,Arial;background:var(--bg);color:var(--text);line-height:1.6}
+    .nav{display:flex;align-items:center;justify-content:space-between;max-width:1200px;margin:0 auto;padding:12px 24px;background:rgba(10,14,23,0.6);border-radius:10px}
+    .brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+    .brand-icon{background:linear-gradient(135deg,var(--accent),#8b5cf6);width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700}
+    .container{max-width:960px;margin:0 auto;padding:20px}
+    header{text-align:center;padding:40px 0 20px}
+    .logo{font-size:2rem;font-weight:800;background:linear-gradient(90deg,var(--accent),#8a6bff);-webkit-background-clip:text;color:transparent;margin-bottom:6px}
+    h1{font-size:1.8rem;margin-bottom:6px}
+    .subtitle{color:var(--muted);max-width:600px;margin:0 auto 16px}
+    .card{background:var(--card);border-radius:12px;padding:18px;margin:20px 0;border:1px solid rgba(255,255,255,0.02)}
+    code,pre{background:var(--code);padding:6px;border-radius:6px}
+    .endpoint{display:inline-block;background:rgba(59,130,246,0.08);padding:4px 8px;border-radius:6px}
+    footer{margin-top:28px;text-align:center;color:var(--muted)}
+  </style>
+</head>
+<body>
+  <nav class="nav"><a class="brand" href="/"><div class="brand-icon">SP</div><div style="font-weight:700;color:var(--text)">Site Phantom</div></a><div><a href="/public/verification-database" class="endpoint">Verification DB</a></div></nav>
+  <div class="container">
+    <header>
+      <div class="logo">DeltaDB Cloud Services</div>
+      <h1>Verification API Documentation</h1>
+      <p class="subtitle">Verification API is owned by SitePhantom Development</p>
+    </header>
+
+    <main>
+      <div class="card">
+        <h2>Authentication & Access</h2>
+        <p>This API is <strong>not publicly open</strong>. Access is restricted to:</p>
+        <ul>
+          <li>DeltaDB Cloud Services</li>
+          <li>Authorized SitePhantom Development Endpoints</li>
+          <li>Registered Developers</li>
+        </ul>
+        <p>No API keys are issued externally. All requests must originate from approved sources.</p>
+        <div class="note">
+          ⚠️ Unauthorized requests will be blocked silently or return <code>403 Forbidden</code>.
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Endpoints</h2>
+
+        <h3><span class="method-get">GET</span> <span class="endpoint">/public/verification-database</span></h3>
+        <p>Pull the full database of verified accounts with SitePhantom Development.</p>
+        <p><strong>Request Body (JSON):</strong></p>
+        <pre>{
+  "apikey": "YOUR_API_KEY"
+}</pre>
+        <p><strong>Success Response (<code>200 OK</code>):</strong></p>
+        <pre>{
+  "success": true,
+  "developer": true,
+  "data": "VERIFICATION_DATABASE_CONTENT"
+}</pre>
+        <p><strong>Error Response (<code>400</code> or <code>403</code>):</strong></p>
+        <pre>{
+  "success": false,
+  "error": "invalid_key"
+}</pre>
+
+        <h3><span class="method-get">GET</span> <span class="endpoint">/public/mass-user-database/pull</span></h3>
+        <p>Check verification status of a user (requires trusted source).</p>
+        <p><strong>Example:</strong> <code>GET /public/mass-user-database/pull?apikey=YOUR_API_KEY</code></p>
+        <p><strong>Response:</strong></p>
+        <pre>{
+  "success": true,
+  "developer": true,
+  "data": "MASS_USER_DATABASE_CONTENT"
+}</pre>
+      </div>
+
+      <div class="card">
+        <h2>⏱Rate Limiting</h2>
+        <p>All endpoints are protected by <strong>DeltaDB Cloud Services</strong>:</p>
+        <ul>
+          <li><code>30 requests per minute</code> per IP</li>
+          <li>Exceeding limits returns <code>429 Too Many Requests</code></li>
+        </ul>
+        <p>Repeat overusing the API may result in your access being revoked.</p>
+      </div>
+
+      <div class="card">
+        <h2>Integration Tips</h2>
+        <ul>
+          <li>When pulling the mass-user-database, ensure your drive has enough storage, as it is a quite large database.</li>
+          <li>Handle <code>4xx/5xx</code> responses gracefully in your client.</li>
+          <li>Prevent your users from overusing your service that uses this API, as your apikey can get revoked.</li>
+          <li>Implement securely and don't leak your API key.</li>
+        </ul>
+      </div>
+    </main>
+
+    <footer>
+      <p>DeltaDB Cloud Services Verify Endpoint • https://verify.deltadb.site/</p>
+      <p>Last updated: January 2026</p>
+    </footer>
+  </div>
+</body>
+</html>

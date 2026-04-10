@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Site Phantom - Privacy Policy</title>
+    <meta name="description" content="Learn how Site Phantom collects and uses your data.">
+    <link rel="icon" type="image/png" href="/static/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0e17;
+            --bg-secondary: #0f1623;
+            --bg-card: #151c2c;
+            --bg-card-hover: #1a2336;
+            --accent-primary: #3b82f6;
+            --accent-hover: #2563eb;
+            --accent-glow: rgba(59, 130, 246, 0.3);
+            --accent-gradient: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --border-color: rgba(148, 163, 184, 0.1);
+            --border-glow: rgba(59, 130, 246, 0.4);
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.6;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Animated background gradient */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100vh;
+            background:
+                radial-gradient(ellipse 80% 50% at 50% -20%, rgba(59, 130, 246, 0.15), transparent),
+                radial-gradient(ellipse 60% 40% at 80% 60%, rgba(139, 92, 246, 0.1), transparent),
+                radial-gradient(ellipse 50% 30% at 20% 80%, rgba(59, 130, 246, 0.08), transparent);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Navigation */
+        .nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(10, 14, 23, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 72px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .brand-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+        }
+
+        .brand-text {
+            font-weight: 700;
+            font-size: 1.35rem;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--text-primary);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 24px;
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            flex: 1;
+        }
+
+        .policy-header {
+            text-align: center;
+            margin-bottom: 40px;
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        .policy-header h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .policy-header p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 24px;
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.5s ease-out 0.1s backwards;
+        }
+
+        .card:hover {
+            border-color: var(--border-glow);
+            background: var(--bg-card-hover);
+        }
+
+        .card h2 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .card h2::before {
+            content: "";
+            display: block;
+            width: 4px;
+            height: 20px;
+            background: var(--accent-gradient);
+            border-radius: 2px;
+        }
+
+        p,
+        ul {
+            margin-bottom: 16px;
+            color: var(--text-secondary);
+        }
+
+        ul {
+            padding-left: 24px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        strong {
+            color: var(--text-primary);
+        }
+
+        a {
+            color: var(--accent-primary);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        a:hover {
+            color: var(--accent-hover);
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: auto;
+            position: relative;
+            z-index: 1;
+            padding: 60px 24px;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-primary);
+        }
+
+        .footer-copy {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="/" class="brand">
+                <img src="/static/favicon.png"
+                    class="brand-icon" alt="SP">
+                <span class="brand-text">Site Phantom</span>
+            </a>
+
+            <div class="nav-links">
+                <a href="/" class="nav-link">Home</a>
+                <a href="/userdash" class="nav-link">Dashboard</a>
+            </div>
+
+            <div class="nav-user">
+                {{ topbar_account }}
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="policy-header">
+            <h1>Privacy Policy</h1>
+            <p>Last updated: February 2026</p>
+        </div>
+
+        <div class="card">
+            <p>This Privacy Policy explains how <strong>Site Phantom</strong> ("we", "us", or "our") collects, uses, and
+                protects your personal information when you use our verification and account management services at
+                <code>verify.deltadb.site</code>.
+            </p>
+        </div>
+
+        <div class="card">
+            <h2>1. Information We Collect</h2>
+            <ul>
+                <li><strong>Account Data</strong>: If you create an account, we collect your username, email address,
+                    and a securely hashed password.</li>
+                <li><strong>Discord Identity</strong>: When logging in via Discord, we receive your Discord user ID and
+                    username (e.g., User#1234). We do not access your messages, servers, or friends list.</li>
+                <li><strong>Roblox Identity</strong>: During verification, we store your Roblox user ID linked to your
+                    Discord account.</li>
+                <li><strong>Technical Data</strong>: IP address, browser type, and request metadata for security, rate
+                    limiting, and system monitoring.</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>2. How We Use Your Data</h2>
+            <ul>
+                <li>To authenticate and manage your SCP Foundation-related accounts</li>
+                <li>To securely link your Discord and Roblox identities for verification</li>
+                <li>To prevent abuse through automated rate limiting and security checks</li>
+                <li>To maintain system integrity and operational reliability</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>3. Data Security & Storage</h2>
+            <ul>
+                <li>All data is stored on a private, self-hosted server with restricted access</li>
+                <li>Passwords are hashed using <strong>bcrypt</strong> (never stored in plain text)</li>
+                <li>Session cookies are <code>HttpOnly</code>, <code>Secure</code>, and signed</li>
+                <li>Databases are not exposed to the public internet</li>
+                <li>We do not sell, share, or monetize your personal data</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>4. Data Retention</h2>
+            <p>We retain your account and verification data indefinitely unless you request deletion. You may delete
+                your account at any time by contacting the administrator.</p>
+        </div>
+
+        <div class="card">
+            <h2>5. Your Rights</h2>
+            <p>You have the right to:</p>
+            <ul>
+                <li>Access the personal data we hold about you</li>
+                <li>Request correction of inaccurate information</li>
+                <li>Request deletion of your account and associated data</li>
+                <li>Withdraw consent by deleting your account</li>
+            </ul>
+            <p>To exercise these rights, please contact us via Discord (preferred) or email.</p>
+        </div>
+
+        <div class="card">
+            <h2>6. Policy Updates</h2>
+            <p>We may update this Privacy Policy periodically. The latest version will always be posted here with an
+                updated "Last updated" date.</p>
+        </div>
+
+        <div class="card">
+            <h2>7. Contact Us</h2>
+            <p>Questions? Concerns? Reach out to us:</p>
+            <ul>
+                <li><strong>Discord</strong>: @un_funny.</li>
+                <li><strong>Email</strong>: contact.sitephantom@deltadb.site</li>
+            </ul>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-links">
+                <a href="/privacy">Privacy Policy</a>
+                <a href="/terms">Terms of Service</a>
+            </div>
+            <p class="footer-copy">© 2026 Site Phantom. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+
+</html>

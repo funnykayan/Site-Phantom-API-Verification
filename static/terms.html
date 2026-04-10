@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Terms of Service — Site Phantom</title>
+    <meta name="description" content="Terms and conditions for using Site Phantom verification and account services.">
+    <link rel="icon" type="image/png" href="/static/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0e17;
+            --bg-secondary: #0f1623;
+            --bg-card: #151c2c;
+            --bg-card-hover: #1a2336;
+            --accent-primary: #3b82f6;
+            --accent-hover: #2563eb;
+            --accent-glow: rgba(59, 130, 246, 0.3);
+            --accent-gradient: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --border-color: rgba(148, 163, 184, 0.1);
+            --border-glow: rgba(59, 130, 246, 0.4);
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated background gradient */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100vh;
+            background:
+                radial-gradient(ellipse 80% 50% at 50% -20%, rgba(59, 130, 246, 0.15), transparent),
+                radial-gradient(ellipse 60% 40% at 80% 60%, rgba(139, 92, 246, 0.1), transparent),
+                radial-gradient(ellipse 50% 30% at 20% 80%, rgba(59, 130, 246, 0.08), transparent);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            text-align: center;
+            margin: 80px 0 40px;
+        }
+
+        h1 {
+            font-size: clamp(2rem, 5vw, 2.8rem);
+            font-weight: 800;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-primary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            border-color: var(--border-glow);
+            background: var(--bg-card-hover);
+        }
+
+        h2 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        h2::before {
+            content: "";
+            display: block;
+            width: 4px;
+            height: 20px;
+            background: var(--accent-gradient);
+            border-radius: 2px;
+        }
+
+        p, ul {
+            margin-bottom: 16px;
+            color: var(--text-secondary);
+        }
+
+        ul {
+            padding-left: 24px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        strong {
+            color: var(--text-primary);
+        }
+
+        footer {
+            text-align: center;
+            padding: 60px 0 80px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--accent-primary);
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 16px;
+            transition: color 0.2s ease;
+        }
+
+        .back-link:hover {
+            color: var(--accent-hover);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .card {
+                padding: 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Terms of Service</h1>
+            <p class="subtitle">Last updated: February 2026</p>
+        </header>
+
+        <div class="card">
+            <p>These Terms of Service ("Terms") govern your use of the <strong>Site Phantom</strong> verification and account management platform ("Service") available at <code>verify.deltadb.site</code>. By accessing or using the Service, you agree to be bound by these Terms.</p>
+        </div>
+
+        <div class="card">
+            <h2>1. Acceptance of Terms</h2>
+            <p>By registering an account, linking Discord/Roblox, or using any part of the Service, you confirm that you are at least 13 years old and agree to comply with these Terms and our Privacy Policy.</p>
+        </div>
+
+        <div class="card">
+            <h2>2. Use of Service</h2>
+            <p>You agree to use the Service only for lawful purposes related to SCP Foundation community verification. You must not:</p>
+            <ul>
+                <li>Use automated scripts to access or scrape the Service</li>
+                <li>Attempt to bypass rate limits or security measures</li>
+                <li>Impersonate another user or create fake accounts</li>
+                <li>Use the Service to violate Roblox or Discord Terms of Service</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>3. Account Responsibility</h2>
+            <p>You are solely responsible for maintaining the confidentiality of your account credentials. Notify us immediately of any unauthorized use.</p>
+        </div>
+
+        <div class="card">
+            <h2>4. Data and Verification</h2>
+            <p>The Service links your Discord and Roblox identities for verification purposes only. We do not store Roblox login credentials or Discord tokens. All data is used strictly for authentication and access control within the SCP Foundation community.</p>
+        </div>
+
+        <div class="card">
+            <h2>5. Third-Party Services</h2>
+            <p>Site Phantom uses OAuth provided by <strong>Discord</strong> and <strong>Roblox</strong>. Your use of those platforms is governed by their respective terms:</p>
+            <ul>
+                <li><a href="https://discord.com/terms" target="_blank" style="color:var(--accent-primary)">Discord Terms of Service</a></li>
+                <li><a href="https://en.help.roblox.com/hc/en-us/articles/115004647846-Roblox-Terms-of-Use" target="_blank" style="color:var(--accent-primary)">Roblox Terms of Use</a></li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>6. Modifications</h2>
+            <p>We reserve the right to modify these Terms at any time. Continued use after changes constitutes acceptance.</p>
+        </div>
+
+        <div class="card">
+            <h2>7. Termination</h2>
+            <p>We may suspend or terminate your access for violations of these Terms, fraudulent activity, or at our sole discretion.</p>
+        </div>
+
+        <div class="card">
+            <h2>8. Disclaimer</h2>
+            <p>The Service is provided "as is". We do not guarantee uninterrupted or error-free operation. Use at your own risk.</p>
+        </div>
+
+        <div class="card">
+            <h2>9. Contact</h2>
+            <p>Questions about these Terms? Contact us via:</p>
+            <ul>
+                <li><strong>Discord</strong>: @un_funny.</li>
+                <li><strong>Email</strong>: contact.sitephantom@deltadb.site</li>
+            </ul>
+            <a href="/" class="back-link">
+                ← Return to Home
+            </a>
+        </div>
+
+        <footer>
+            <p>© 2026 Site Phantom. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Site Phantom - Developer Portal</title>
+    <meta name="description" content="Register and manage your OAuth applications with Site Phantom.">
+    <link rel="icon" type="image/png" href="/static/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0e17;
+            --bg-secondary: #0f1623;
+            --bg-card: #151c2c;
+            --bg-card-hover: #1a2336;
+            --accent-primary: #3b82f6;
+            --accent-hover: #2563eb;
+            --accent-glow: rgba(59, 130, 246, 0.3);
+            --accent-gradient: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --border-color: rgba(148, 163, 184, 0.1);
+            --border-glow: rgba(59, 130, 246, 0.4);
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.6;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            height: 100vh;
+            background:
+                radial-gradient(ellipse 80% 50% at 50% -20%, rgba(59, 130, 246, 0.15), transparent),
+                radial-gradient(ellipse 60% 40% at 80% 60%, rgba(139, 92, 246, 0.1), transparent),
+                radial-gradient(ellipse 50% 30% at 20% 80%, rgba(59, 130, 246, 0.08), transparent);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .nav {
+            position: sticky; top: 0; z-index: 100;
+            background: rgba(10, 14, 23, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-container {
+            max-width: 1200px; margin: 0 auto; padding: 0 24px;
+            display: flex; justify-content: space-between; align-items: center; height: 72px;
+        }
+
+        .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+        .brand-icon { width: 40px; height: 40px; border-radius: 10px; }
+        .brand-text {
+            font-weight: 700; font-size: 1.35rem;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+
+        .nav-links { display: flex; align-items: center; gap: 8px; }
+        .nav-link {
+            color: var(--text-secondary); text-decoration: none; padding: 10px 16px;
+            border-radius: 8px; font-weight: 500; font-size: 0.95rem; transition: all 0.2s ease;
+        }
+        .nav-link:hover { color: var(--text-primary); background: rgba(255,255,255,0.05); }
+
+        .nav-user { display: flex; align-items: center; gap: 16px; }
+        .nav-user a { color: var(--accent-primary); text-decoration: none; font-weight: 500; }
+
+        .container {
+            max-width: 900px; margin: 40px auto; padding: 0 24px;
+            position: relative; z-index: 1; width: 100%; flex: 1;
+        }
+
+        .page-header {
+            text-align: center; margin-bottom: 40px;
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem; font-weight: 800; margin-bottom: 12px;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+
+        .page-header p { color: var(--text-secondary); font-size: 1.1rem; }
+
+        .card {
+            background: var(--bg-card); border: 1px solid var(--border-color);
+            border-radius: 16px; padding: 32px; margin-bottom: 24px;
+            animation: fadeInUp 0.5s ease-out 0.1s backwards;
+        }
+
+        .card h2 {
+            font-size: 1.5rem; font-weight: 700; margin-bottom: 24px;
+            color: var(--text-primary); display: flex; align-items: center; gap: 12px;
+        }
+
+        .card h2::before {
+            content: ''; display: block; width: 4px; height: 24px;
+            background: var(--accent-gradient); border-radius: 2px;
+        }
+
+        .field { margin-bottom: 20px; }
+        .field label {
+            display: block; margin-bottom: 8px; color: var(--text-secondary);
+            font-size: 0.9rem; font-weight: 500;
+        }
+        .field input {
+            width: 100%; padding: 12px 16px;
+            background: rgba(10, 14, 23, 0.5); border: 1px solid var(--border-color);
+            border-radius: 10px; color: var(--text-primary);
+            font-family: inherit; font-size: 1rem; transition: all 0.2s ease;
+        }
+        .field input:focus {
+            outline: none; border-color: var(--accent-primary);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .field .hint {
+            margin-top: 6px; font-size: 0.82rem; color: var(--text-muted);
+        }
+
+        .btn {
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 12px 24px; border-radius: 12px; font-weight: 600;
+            font-size: 0.95rem; text-decoration: none; transition: all 0.3s ease;
+            cursor: pointer; border: none; font-family: inherit;
+        }
+
+        .btn-primary {
+            background: var(--accent-gradient); color: white;
+            box-shadow: 0 4px 20px var(--accent-glow);
+        }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px var(--accent-glow); }
+
+        .btn-secondary {
+            background: var(--bg-card); color: var(--text-primary);
+            border: 1px solid var(--border-color);
+        }
+        .btn-secondary:hover { background: var(--bg-card-hover); border-color: var(--border-glow); }
+
+        .btn-danger {
+            background: rgba(239, 68, 68, 0.1); color: var(--danger);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+        }
+        .btn-danger:hover { background: rgba(239, 68, 68, 0.2); }
+
+        .btn-sm { padding: 8px 16px; font-size: 0.85rem; border-radius: 8px; }
+
+        .app-list { display: grid; gap: 16px; }
+
+        .app-item {
+            background: rgba(255,255,255,0.02); border: 1px solid var(--border-color);
+            border-radius: 12px; padding: 24px; transition: all 0.2s ease;
+        }
+        .app-item:hover { border-color: var(--border-glow); background: rgba(255,255,255,0.04); }
+
+        .app-item-header {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .app-item-header h3 { font-size: 1.2rem; font-weight: 700; color: var(--text-primary); }
+
+        .app-item-actions { display: flex; gap: 8px; }
+
+        .app-detail {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 8px 0; border-bottom: 1px solid rgba(148, 163, 184, 0.05);
+        }
+        .app-detail:last-child { border-bottom: none; }
+
+        .app-detail-label { color: var(--text-secondary); font-size: 0.9rem; font-weight: 500; }
+
+        .app-detail-value {
+            color: var(--text-primary); font-family: monospace; font-size: 0.85rem;
+            background: rgba(0,0,0,0.3); padding: 4px 10px; border-radius: 6px;
+            max-width: 400px; word-break: break-all; user-select: all;
+        }
+
+        .secret-value {
+            filter: blur(4px); transition: filter 0.2s ease; cursor: pointer;
+        }
+        .secret-value:hover, .secret-value.revealed { filter: none; }
+
+        .empty-state {
+            text-align: center; padding: 40px 20px; color: var(--text-secondary);
+        }
+        .empty-state p { margin-bottom: 16px; font-size: 1.05rem; }
+
+        .docs-box {
+            background: rgba(59, 130, 246, 0.05); border: 1px solid rgba(59, 130, 246, 0.15);
+            border-radius: 12px; padding: 24px; margin-bottom: 24px;
+        }
+
+        .docs-box h3 { color: var(--accent-primary); margin-bottom: 12px; font-size: 1.1rem; }
+
+        .docs-box code {
+            background: rgba(0,0,0,0.3); padding: 2px 8px; border-radius: 4px;
+            font-size: 0.85rem; color: var(--text-primary);
+        }
+
+        .docs-box pre {
+            background: rgba(0,0,0,0.3); padding: 16px; border-radius: 8px;
+            overflow-x: auto; margin: 12px 0; font-size: 0.85rem; line-height: 1.5;
+        }
+
+        .docs-box ol, .docs-box ul {
+            margin: 12px 0; padding-left: 24px; color: var(--text-secondary);
+        }
+        .docs-box li { margin-bottom: 8px; }
+
+        .toast {
+            position: fixed; bottom: 24px; right: 24px; background: var(--bg-card);
+            border: 1px solid var(--success); border-radius: 10px; padding: 12px 20px;
+            color: var(--success); font-weight: 600; font-size: 0.9rem;
+            opacity: 0; transition: opacity 0.3s ease; pointer-events: none; z-index: 999;
+        }
+        .toast.show { opacity: 1; }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .footer {
+            margin-top: 40px; padding: 24px 0; border-top: 1px solid var(--border-color);
+        }
+        .footer-container {
+            max-width: 1200px; margin: 0 auto; padding: 0 24px;
+            display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center;
+        }
+        .footer-links { display: flex; gap: 12px; }
+        .footer-links a { color: var(--text-secondary); text-decoration: none; font-weight: 500; }
+        .footer-copy { color: var(--text-muted); font-size: 0.95rem; }
+    </style>
+</head>
+
+<body>
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="/" class="brand">
+                <img src="/static/favicon.png" class="brand-icon" alt="SP">
+                <span class="brand-text">Site Phantom</span>
+            </a>
+            <div class="nav-links">
+                <a href="/" class="nav-link">Home</a>
+                <a href="/userdash" class="nav-link">Dashboard</a>
+                <a href="/developer/apps" class="nav-link">Developer</a>
+            </div>
+            <div class="nav-user">
+                {{ topbar_account }}
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="page-header">
+            <h1>Developer Portal</h1>
+            <p>Register apps and let users sign in with their Site Phantom account.</p>
+        </div>
+
+        <!-- Quick-start docs -->
+        <div class="docs-box">
+            <h3>How "Login with Site Phantom" Works</h3>
+            <ol>
+                <li>Register your app below to get a <code>Client ID</code> and <code>Client Secret</code>.</li>
+                <li>Redirect users to:
+                    <pre>{{ base_url }}/oauth/authorize?client_id=YOUR_CLIENT_ID&amp;redirect_uri=YOUR_REDIRECT_URI&amp;response_type=code&amp;scope=identify</pre>
+                </li>
+                <li>After the user approves, they'll be redirected to your <code>redirect_uri</code> with a <code>?code=...</code> parameter.</li>
+                <li>Exchange the code for an access token by POSTing to:
+                    <pre>POST {{ base_url }}/oauth/token
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=authorization_code&amp;code=THE_CODE&amp;redirect_uri=YOUR_REDIRECT_URI&amp;client_id=YOUR_CLIENT_ID&amp;client_secret=YOUR_CLIENT_SECRET</pre>
+                </li>
+                <li>Use the token to fetch user info:
+                    <pre>GET {{ base_url }}/oauth/userinfo
+Authorization: Bearer ACCESS_TOKEN</pre>
+                    Returns: <code>{ "id", "username", "discord_id", "roblox_id" }</code>
+                </li>
+            </ol>
+        </div>
+
+        <!-- Create New App -->
+        <div class="card">
+            <h2>Register New App</h2>
+            <form method="POST" action="/developer/apps/create">
+                <div class="field">
+                    <label for="app_name">Application Name</label>
+                    <input id="app_name" name="app_name" type="text" placeholder="My Cool App" required maxlength="64">
+                    <p class="hint">The name users will see on the authorization screen.</p>
+                </div>
+                <div class="field">
+                    <label for="redirect_uri">Redirect URI</label>
+                    <input id="redirect_uri" name="redirect_uri" type="url" placeholder="https://yoursite.com/callback" required maxlength="512">
+                    <p class="hint">Where users are sent after approving. Must be HTTPS in production.</p>
+                </div>
+                <button type="submit" class="btn btn-primary">Create Application</button>
+            </form>
+        </div>
+
+        <!-- App List -->
+        <div class="card">
+            <h2>Your Applications</h2>
+            {{ apps_list }}
+        </div>
+    </main>
+
+    <div class="toast" id="toast">Copied!</div>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-links">
+                <a href="/privacy">Privacy Policy</a>
+                <a href="/terms">Terms of Service</a>
+            </div>
+            <p class="footer-copy">&copy; 2026 Site Phantom. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function copyText(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                const t = document.getElementById('toast');
+                t.classList.add('show');
+                setTimeout(() => t.classList.remove('show'), 1500);
+            });
+        }
+
+        function toggleSecret(el) {
+            el.classList.toggle('revealed');
+        }
+
+        function confirmDelete(appId) {
+            if (confirm('Are you sure you want to delete this application? This cannot be undone.')) {
+                const form = document.createElement('form');
+                form.method = 'POST';
+                form.action = '/developer/apps/' + appId + '/delete';
+                document.body.appendChild(form);
+                form.submit();
+            }
+        }
+
+        function confirmRegenerate(appId) {
+            if (confirm('Regenerate the client secret? The old secret will stop working immediately.')) {
+                const form = document.createElement('form');
+                form.method = 'POST';
+                form.action = '/developer/apps/' + appId + '/regenerate';
+                document.body.appendChild(form);
+                form.submit();
+            }
+        }
+    </script>
+</body>
+
+</html>
