@@ -346,10 +346,10 @@
             <div class="security-banner">
                 <div class="security-banner-icon">🔒</div>
                 <div class="security-banner-text">
-                    <h3>Your account is safe — we never ask for your Roblox password</h3>
+                    <h3>Your account is safe — you log in directly on the official Roblox website</h3>
                     <p>
-                        Verification works entirely through a one-time code you type inside the Roblox game.
-                        We have zero access to your Roblox account, cookies, or credentials.
+                        Verification uses Roblox’s official OAuth2 system. You’ll be redirected to <strong>roblox.com</strong> to approve access.
+                        We never see your password. Roblox controls the authorization entirely.
                         Not convinced? <a href="https://github.com/funnykayan/Site-Phantom-API-Verification" target="_blank" rel="noopener">Read our source code on GitHub.</a>
                     </p>
                 </div>
@@ -360,19 +360,7 @@
                 <div class="card-header">
                     <div class="card-header-icon">🎮</div>
                     <h1>Roblox Verification</h1>
-                    <p>Enter this code inside the Roblox game to link your account</p>
-                </div>
-
-                <!-- Code -->
-                <div class="code-section">
-                    <div class="code-label">Your one-time code</div>
-                    <div class="code-display">{{ code }}</div>
-                    <div class="code-expiry">
-                        <svg width="13" height="13" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <circle cx="12" cy="12" r="10"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6l4 2"/>
-                        </svg>
-                        Expires in 10 minutes &nbsp;·&nbsp; Do not share this code
-                    </div>
+                    <p>Securely link your Roblox account using Roblox’s official OAuth2 system</p>
                 </div>
 
                 <!-- Steps -->
@@ -380,49 +368,37 @@
                     <div class="step">
                         <div class="step-number">1</div>
                         <div class="step-content">
-                            <strong>Open the Ranking Place game on Roblox</strong>
-                            <span>
-                                <a href="https://www.roblox.com/games/101959310206065/Ranking-Place" target="_blank" rel="noopener">
-                                    roblox.com/games/101959310206065/Ranking-Place
-                                </a>
-                            </span>
+                            <strong>Click “Verify on Roblox” in your dashboard</strong>
+                            <span>You’ll be redirected to the official Roblox authorization page</span>
                         </div>
                     </div>
                     <div class="step">
                         <div class="step-number">2</div>
                         <div class="step-content">
-                            <strong>Select "Verify" and enter the code</strong>
-                            <span>Type <code>{{ code }}</code> when prompted in-game</span>
+                            <strong>Log in on roblox.com and approve access</strong>
+                            <span>Roblox will show you exactly what is being requested — only your basic profile (user ID)</span>
                         </div>
                     </div>
                     <div class="step">
                         <div class="step-number">3</div>
                         <div class="step-content">
-                            <strong>Confirm your Discord ID shown on screen</strong>
-                            <span>The game will display your Discord ID — press confirm if it looks correct</span>
-                        </div>
-                    </div>
-                    <div class="step">
-                        <div class="step-number">4</div>
-                        <div class="step-content">
-                            <strong>Done — we'll detect it automatically</strong>
-                            <span>Your Roblox username will be linked to your Site Phantom account</span>
+                            <strong>You’re redirected back automatically</strong>
+                            <span>Your Roblox user ID is linked to your Site Phantom account and you’re taken to the dashboard</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Status + button -->
+                <!-- CTA -->
                 <div class="verify-action">
-                    <div class="status-pill" id="status">
-                        <span class="status-dot"></span>
-                        Awaiting verification…
-                    </div>
-                    <button class="btn btn-primary" onclick="checkVerification()">
+                    <a href="/auth/roblox" class="btn btn-primary">
                         <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
                         </svg>
-                        Check Verification
-                    </button>
+                        Verify on Roblox
+                    </a>
+                    <p style="font-size:0.82rem; color: var(--text-muted); text-align:center;">
+                        You will be taken to <strong>roblox.com</strong> — we never handle your Roblox credentials
+                    </p>
                 </div>
             </div>
 
@@ -439,21 +415,21 @@
                         <span class="trust-item-icon">❌</span>
                         <div class="trust-item-text">
                             <strong>No password</strong>
-                            <span>We never ask for or receive your Roblox password</span>
+                            <span>You log in on roblox.com — we never see your password</span>
                         </div>
                     </div>
                     <div class="trust-item deny">
                         <span class="trust-item-icon">❌</span>
                         <div class="trust-item-text">
-                            <strong>No account access</strong>
-                            <span>We cannot log into, modify, or read your Roblox account</span>
+                            <strong>No account control</strong>
+                            <span>We cannot post, buy, sell, or modify anything on your account</span>
                         </div>
                     </div>
                     <div class="trust-item deny">
                         <span class="trust-item-icon">❌</span>
                         <div class="trust-item-text">
-                            <strong>No cookies or tokens</strong>
-                            <span>We never request your .ROBLOSECURITY cookie</span>
+                            <strong>No hidden permissions</strong>
+                            <span>Roblox shows you exactly what is being requested before you approve</span>
                         </div>
                     </div>
                     <div class="trust-item deny">
@@ -466,8 +442,8 @@
                     <div class="trust-item allow">
                         <span class="trust-item-icon">✅</span>
                         <div class="trust-item-text">
-                            <strong>Only your username</strong>
-                            <span>We store your Roblox username to link it with your Discord</span>
+                            <strong>Only your user ID</strong>
+                            <span>We store your Roblox user ID to link it with your account</span>
                         </div>
                     </div>
                     <div class="trust-item allow">
@@ -496,32 +472,7 @@
     </footer>
 
     <script>
-        const DISCORD_ID = "{{ discord_id }}";
-
-        async function checkVerification() {
-            const statusEl = document.getElementById("status");
-            statusEl.innerHTML = '<span class="status-dot"></span> Checking…';
-            statusEl.className = "status-pill";
-
-            try {
-                const res = await fetch(`/auth/roblox/status?discord_id=${DISCORD_ID}`);
-                const data = await res.json();
-
-                if (data.verified) {
-                    statusEl.innerHTML = '✅ Verified! Redirecting…';
-                    statusEl.className = "status-pill success";
-                    setTimeout(() => { window.location.href = "/userdash"; }, 1500);
-                } else {
-                    statusEl.innerHTML = '❌ Not verified yet — try again';
-                    statusEl.className = "status-pill error";
-                }
-            } catch (err) {
-                statusEl.innerHTML = '⚠️ Check failed — please retry';
-                statusEl.className = "status-pill error";
-            }
-        }
-
-        setInterval(checkVerification, 8000);
+        // No polling needed — Roblox OAuth callback handles the redirect automatically
     </script>
 </body>
 </html>
