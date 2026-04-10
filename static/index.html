@@ -291,6 +291,101 @@
             height: 20px;
         }
 
+        /* Trust Section */
+        .trust {
+            position: relative;
+            z-index: 1;
+            padding: 80px 24px;
+        }
+
+        .trust-container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .trust-header {
+            text-align: center;
+            margin-bottom: 56px;
+        }
+
+        .trust-header .section-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(16, 185, 129, 0.08);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-size: 0.82rem;
+            color: var(--success);
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .trust-header h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .trust-header p {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .trust-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 28px;
+            transition: all 0.3s ease;
+        }
+
+        .trust-card:hover {
+            border-color: var(--border-glow);
+            background: var(--bg-card-hover);
+            transform: translateY(-3px);
+        }
+
+        .trust-card-icon {
+            width: 44px; height: 44px;
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.3rem; margin-bottom: 16px;
+        }
+
+        .trust-card-icon.green { background: rgba(16, 185, 129, 0.1); }
+        .trust-card-icon.blue  { background: rgba(59, 130, 246, 0.1); }
+        .trust-card-icon.purple{ background: rgba(139, 92, 246, 0.1); }
+        .trust-card-icon.amber { background: rgba(245, 158, 11, 0.1); }
+
+        .trust-card h3 {
+            font-size: 1.05rem; font-weight: 700; margin-bottom: 8px;
+        }
+
+        .trust-card p {
+            font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6;
+        }
+
+        .trust-card a {
+            display: inline-flex; align-items: center; gap: 4px;
+            color: var(--accent-primary); text-decoration: none;
+            font-size: 0.88rem; font-weight: 600; margin-top: 12px;
+            transition: gap 0.2s ease;
+        }
+
+        .trust-card a:hover { gap: 8px; }
+
         /* Features Section */
         .features {
             position: relative;
@@ -543,10 +638,51 @@
                     </svg>
                     Go to Dashboard
                 </a>
+                <a href="https://github.com/funnykayan/Site-Phantom-API-Verification" target="_blank" rel="noopener" class="btn btn-secondary">
+                    <svg class="btn-icon" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844a9.59 9.59 0 012.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+                    </svg>
+                    View Source Code
+                </a>
             </div>
         </div>
     </section>
 
+
+    <!-- Trust Section -->
+    <section class="trust">
+        <div class="trust-container">
+            <div class="trust-header">
+                <div class="section-badge">🛡️ Security &amp; Transparency</div>
+                <h2>Is this safe? Yes — here's exactly why</h2>
+                <p>We get asked this a lot. These are straight answers to real concerns.</p>
+            </div>
+            <div class="trust-grid">
+                <div class="trust-card">
+                    <div class="trust-card-icon green">🔓</div>
+                    <h3>100% Open Source</h3>
+                    <p>Every line of code running this site is publicly available on GitHub. You don't have to trust us — you can verify us.</p>
+                    <a href="https://github.com/funnykayan/Site-Phantom-API-Verification" target="_blank" rel="noopener">Read the source code →</a>
+                </div>
+                <div class="trust-card">
+                    <div class="trust-card-icon blue">🔑</div>
+                    <h3>We Never Touch Your Password</h3>
+                    <p>Roblox verification uses a one-time 4-digit code typed inside the game. We never ask for your Roblox password, cookie, or token.</p>
+                </div>
+                <div class="trust-card">
+                    <div class="trust-card-icon purple">🗄️</div>
+                    <h3>Minimal Data Storage</h3>
+                    <p>We only store what's needed: your Discord ID and Roblox username. No email addresses, no financial data, no tracking.</p>
+                    <a href="/privacy">Read our Privacy Policy →</a>
+                </div>
+                <div class="trust-card">
+                    <div class="trust-card-icon amber">⚡</div>
+                    <h3>No Account Access</h3>
+                    <p>We cannot log into, modify, or read your Roblox account. The in-game code only proves you were in the game — nothing more.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Stats Section -->
     <section class="stats">

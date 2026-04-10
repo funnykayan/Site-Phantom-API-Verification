@@ -257,6 +257,20 @@
             text-decoration: underline;
         }
 
+        .security-note {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+            margin-top: 20px;
+            padding: 10px 14px;
+            background: rgba(16, 185, 129, 0.06);
+            border: 1px solid rgba(16, 185, 129, 0.15);
+            border-radius: 8px;
+            font-size: 0.82rem;
+            color: var(--text-muted);
+        }
+
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -371,6 +385,9 @@
                 <div style="margin-top: 12px; font-size: 0.85rem;">
                     <a href="/" style="color: var(--text-muted);">Return to Home</a>
                 </div>
+            </div>
+            <div class="security-note">
+                🔒 Passwords are hashed with bcrypt — we never store plain-text credentials
             </div>
         </div>
     </div>
